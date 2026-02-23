@@ -879,7 +879,7 @@
             
             const plane = new THREE.Mesh(geometry, material);
             plane.rotation.x = -Math.PI / 2.2;
-            plane.position.y = -6;
+            plane.position.y = -8;
             scene.add(plane);
             
             const pointsMaterial = new THREE.ShaderMaterial({
@@ -931,7 +931,7 @@
             
             const points = new THREE.Points(geometry.clone(), pointsMaterial);
             points.rotation.x = -Math.PI / 2.2;
-            points.position.y = -6;
+            points.position.y = -8;
             scene.add(points);
             
             let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;

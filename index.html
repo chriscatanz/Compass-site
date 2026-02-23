@@ -830,7 +830,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             
-            const geometry = new THREE.PlaneGeometry(70, 35, 100, 60);
+            const geometry = new THREE.PlaneGeometry(70, 35, 75, 45);
             
             const material = new THREE.ShaderMaterial({
                 uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0, 0) } },

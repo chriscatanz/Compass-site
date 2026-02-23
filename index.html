@@ -388,22 +388,22 @@
                 </div>
                 <div class="stats-row">
                     <div class="stat-item animate-on-scroll delay-100">
-                        <div class="stat-number">60%</div>
+                        <div class="stat-number" data-target="60" data-suffix="%">0%</div>
                         <div class="stat-label">Faster Onboarding</div>
                         <div class="stat-sublabel">New hire ramp-up time</div>
                     </div>
                     <div class="stat-item animate-on-scroll delay-200">
-                        <div class="stat-number">30%</div>
+                        <div class="stat-number" data-target="30" data-suffix="%">0%</div>
                         <div class="stat-label">Fewer Escalations</div>
                         <div class="stat-sublabel">Support tickets reduced</div>
                     </div>
                     <div class="stat-item animate-on-scroll delay-300">
-                        <div class="stat-number">&lt;1hr</div>
+                        <div class="stat-number" data-target="1" data-prefix="<" data-suffix="hr">0</div>
                         <div class="stat-label">Time to Deploy</div>
                         <div class="stat-sublabel">No lengthy implementation</div>
                     </div>
                     <div class="stat-item animate-on-scroll delay-400">
-                        <div class="stat-number">100%</div>
+                        <div class="stat-number" data-target="100" data-suffix="%">0%</div>
                         <div class="stat-label">Data Sovereignty</div>
                         <div class="stat-sublabel">Private cloud only</div>
                     </div>
@@ -828,6 +828,36 @@
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
+        });
+
+        // Counter animation for stat numbers
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const target = parseInt(entry.target.dataset.target);
+                    const prefix = entry.target.dataset.prefix || '';
+                    const suffix = entry.target.dataset.suffix || '';
+                    const duration = 1500;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            entry.target.textContent = prefix + Math.floor(current) + suffix;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            entry.target.textContent = prefix + target + suffix;
+                        }
+                    };
+                    updateCounter();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+            counterObserver.observe(el);
         });
 
         // Smooth scroll for anchor links

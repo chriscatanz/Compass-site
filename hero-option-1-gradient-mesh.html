@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hero Option 1: Animated Gradient Mesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #092B49;
+            --secondary: #A62B9F;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 140px 0 120px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+        }
+        
+        /* Animated Gradient Mesh */
+        .gradient-mesh {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .mesh-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+        .mesh-blob-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #092B49 0%, #1a4a7a 100%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        .mesh-blob-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #A62B9F 0%, #d64bc9 100%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+        .mesh-blob-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+        .mesh-blob-4 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+            top: 20%;
+            left: 20%;
+            animation-delay: -15s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.95); }
+            75% { transform: translate(40px, 20px) scale(1.05); }
+        }
+        
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1e1e2d;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1e1e2d;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-text {
+            font-size: 1.15rem;
+            color: #5a5a72;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-primary {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(166,43,159,0.3);
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(166,43,159,0.4);
+        }
+        .btn-secondary {
+            padding: 14px 32px;
+            background: transparent;
+            color: #092B49;
+            border: 2px solid #092B49;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background: #092B49;
+            color: white;
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+        .mockup {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.15);
+            max-width: 450px;
+        }
+        .mockup-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f57; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #28ca42; }
+        .mockup-content {
+            background: #f7f8fc;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 200px;
+        }
+        .chat-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .chat-user {
+            background: #e8ecf2;
+            color: #1e1e2d;
+            margin-left: 40px;
+        }
+        .chat-ai {
+            background: linear-gradient(135deg, #092B49 0%, #A62B9F 100%);
+            color: white;
+            margin-right: 40px;
+        }
+        
+        .label {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="gradient-mesh">
+            <div class="mesh-blob mesh-blob-1"></div>
+            <div class="mesh-blob mesh-blob-2"></div>
+            <div class="mesh-blob mesh-blob-3"></div>
+            <div class="mesh-blob mesh-blob-4"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Now Available
+                    </div>
+                    <h1>From Documents to <span class="gradient-text">Dependable Answers</span></h1>
+                    <p class="hero-text">Compass turns policies, procedures, and training into a governed knowledge assistant your employees can trust. Get answers in seconds—grounded in your approved sources.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-primary">Request Demo</a>
+                        <a href="#" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="mockup">
+                        <div class="mockup-dots">
+                            <div class="mockup-dot dot-red"></div>
+                            <div class="mockup-dot dot-yellow"></div>
+                            <div class="mockup-dot dot-green"></div>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="chat-bubble chat-user">What's our policy on data sharing?</div>
+                            <div class="chat-bubble chat-ai">Third-party data sharing requires written approval and a Data Processing Agreement...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="label">Option 1: Animated Gradient Mesh</div>
+</body>
+</html>

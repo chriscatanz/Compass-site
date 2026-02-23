@@ -830,7 +830,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             
-            const geometry = new THREE.PlaneGeometry(50, 30, 100, 60);
+            const geometry = new THREE.PlaneGeometry(70, 35, 100, 60);
             
             const material = new THREE.ShaderMaterial({
                 uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0, 0) } },
@@ -865,8 +865,8 @@
                         vec3 color = mix(colorA, colorB, vUv.x);
                         float glow = smoothstep(-2.0, 4.0, vElevation);
                         color = mix(colorC, color, 0.5 + glow * 0.5);
-                        color += vec3(glow * 0.2);
-                        float alpha = smoothstep(0.0, 0.3, vUv.y) * 0.5;
+                        color += vec3(glow * 0.1);
+                        float alpha = smoothstep(0.0, 0.3, vUv.y) * 0.25;
                         alpha *= 1.0 - smoothstep(15.0, 25.0, vDistanceFromCenter) * 0.5;
                         gl_FragColor = vec4(color, alpha);
                     }
@@ -879,7 +879,7 @@
             
             const plane = new THREE.Mesh(geometry, material);
             plane.rotation.x = -Math.PI / 2.2;
-            plane.position.y = -4;
+            plane.position.y = -6;
             scene.add(plane);
             
             const pointsMaterial = new THREE.ShaderMaterial({
@@ -917,9 +917,9 @@
                         vec3 color = mix(colorA, colorB, vUv.x);
                         float glow = 1.0 - dist * 2.0;
                         glow = pow(glow, 2.0);
-                        float alpha = glow * smoothstep(0.0, 0.3, vUv.y) * 0.4;
+                        float alpha = glow * smoothstep(0.0, 0.3, vUv.y) * 0.2;
                         float peakBrightness = smoothstep(1.0, 4.0, vElevation);
-                        color += vec3(peakBrightness * 0.3);
+                        color += vec3(peakBrightness * 0.15);
                         alpha *= (0.5 + peakBrightness * 0.5);
                         gl_FragColor = vec4(color, alpha);
                     }
@@ -931,7 +931,7 @@
             
             const points = new THREE.Points(geometry.clone(), pointsMaterial);
             points.rotation.x = -Math.PI / 2.2;
-            points.position.y = -4;
+            points.position.y = -6;
             scene.add(points);
             
             let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;

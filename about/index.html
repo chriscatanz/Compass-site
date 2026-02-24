@@ -477,6 +477,77 @@
             min-height: 600px;
         }
 
+        /* Contact Drawer */
+        .contact-drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .contact-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .contact-drawer {
+            position: fixed;
+            top: 0; right: 0; bottom: 0;
+            width: 450px;
+            max-width: 90vw;
+            background: white;
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-drawer.active {
+            transform: translateX(0);
+        }
+        .contact-drawer-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-drawer-header h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+        .contact-drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-section);
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-body);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-drawer-close:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .contact-drawer-body {
+            flex: 1;
+            padding: 28px;
+            overflow-y: auto;
+        }
+        .contact-drawer-body p {
+            margin-bottom: 24px;
+            color: var(--text-body);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .story-grid, .values-grid, .team-grid {
@@ -505,7 +576,7 @@
                 <a href="../#use-cases" class="nav-link">Use Cases</a>
                 <a href="../#pricing" class="nav-link">Pricing</a>
                 <a href="./" class="nav-link active">About</a>
-                <a href="#" onclick="openDemoModal(); return false;" class="nav-link">Contact</a>
+                <a href="#" onclick="openContactDrawer(); return false;" class="nav-link">Contact</a>
             </nav>
             <a href="#" onclick="openDemoModal(); return false;" class="lqd-btn lqd-btn-primary">Request Demo</a>
         </div>
@@ -647,6 +718,47 @@
         }
         document.getElementById('demoModal').addEventListener('click', function(e) {
             if (e.target === this) closeDemoModal();
+        });
+    </script>
+
+    <!-- Contact Drawer -->
+    <div class="contact-drawer-overlay" id="contactDrawerOverlay" onclick="closeContactDrawer()"></div>
+    <div class="contact-drawer" id="contactDrawer">
+        <div class="contact-drawer-header">
+            <h3>Get in Touch</h3>
+            <button class="contact-drawer-close" onclick="closeContactDrawer()">×</button>
+        </div>
+        <div class="contact-drawer-body">
+            <p>Have a question about Compass? Fill out the form below and we'll get back to you shortly.</p>
+            <div id="contactFormContainer"></div>
+        </div>
+    </div>
+    
+    <!-- HubSpot Form Script -->
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    <script>
+        let contactFormLoaded = false;
+        function openContactDrawer() {
+            document.getElementById('contactDrawerOverlay').classList.add('active');
+            document.getElementById('contactDrawer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (!contactFormLoaded) {
+                hbspt.forms.create({
+                    portalId: "8733406",
+                    formId: "f8f0adbd-eb07-48d8-adb6-0bc0db460bb2",
+                    region: "na1",
+                    target: "#contactFormContainer"
+                });
+                contactFormLoaded = true;
+            }
+        }
+        function closeContactDrawer() {
+            document.getElementById('contactDrawerOverlay').classList.remove('active');
+            document.getElementById('contactDrawer').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeContactDrawer();
         });
     </script>
 </body>

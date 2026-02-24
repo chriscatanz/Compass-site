@@ -48,7 +48,18 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
 .contact-drawer-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; font-size: 20px; color: var(--text-body); transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
 .contact-drawer-close:hover { background: var(--primary); color: white; }
 .contact-drawer-body { flex: 1; padding: 28px; overflow-y: auto; }
-.contact-drawer-body p { margin-bottom: 24px; color: var(--text-body); } /* ===== FLIP CARDS ===== */.flip-card { perspective: 1000px; height: 280px; } .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; } .flip-card:hover .flip-card-inner { transform: rotateY(180deg); } .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; } .flip-card-front { background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); } .flip-card-back { background: var(--gradient-primary); color: white; transform: rotateY(180deg); text-align: center; } .flip-card-back p { font-size: 1rem; line-height: 1.7; } /* ===== STAT COUNTERS ===== */.stats-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; } .stat-item { text-align: center; padding: 48px 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; min-width: 220px; } .stat-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); } .stat-number { font-size: 3.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 12px; } .stat-label { font-size: 1.1rem; color: var(--text-dark); font-weight: 700; } .stat-sublabel { font-size: 0.9rem; color: var(--text-light); margin-top: 8px; } /* ===== ZIGZAG LAYOUT ===== */.zigzag-section { display: flex; align-items: center; gap: 80px; margin-bottom: 80px; } .zigzag-section:last-child { margin-bottom: 0; } .zigzag-section.reverse { flex-direction: row-reverse; } .zigzag-content { flex: 1; } .zigzag-visual { flex: 1; display: flex; justify-content: center; } .zigzag-icon-wrap { width: 220px; height: 220px; background: var(--gradient-light); border-radius: 32px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); transition: all 0.4s; } .zigzag-icon-wrap:hover { transform: scale(1.05) rotate(-3deg); } .zigzag-icon-wrap img { width: 110px; height: 110px; object-fit: contain; } .zigzag-content h3 { font-size: 1.75rem; margin-bottom: 16px; } .zigzag-content p { font-size: 1.1rem; color: var(--text-body); line-height: 1.8; } @media (max-width: 768px) { .zigzag-section, .zigzag-section.reverse {  flex-direction: column;  gap: 40px; } }
+.contact-drawer-body p { margin-bottom: 24px; color: var(--text-body); }
+/* Demo Drawer (wider for calendar) */
+.demo-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 550px; max-width: 95vw; background: white; z-index: 9999; transform: translateX(100%); transition: transform 0.3s ease; box-shadow: -10px 0 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+.demo-drawer.active { transform: translateX(0); }
+.demo-drawer-header { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.demo-drawer-header h3 { font-size: 1.25rem; color: var(--text-dark); margin: 0; }
+.demo-drawer-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-section); border: none; cursor: pointer; font-size: 20px; color: var(--text-body); transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+.demo-drawer-close:hover { background: var(--primary); color: white; }
+.demo-drawer-body { flex: 1; padding: 28px; overflow-y: auto; }
+.demo-drawer-body p { margin-bottom: 24px; color: var(--text-body); }
+.demo-drawer-body .meetings-iframe-container { min-height: 550px; }
+.demo-drawer-body iframe { width: 100% !important; min-height: 550px !important; } /* ===== FLIP CARDS ===== */.flip-card { perspective: 1000px; height: 280px; } .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; } .flip-card:hover .flip-card-inner { transform: rotateY(180deg); } .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; } .flip-card-front { background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); } .flip-card-back { background: var(--gradient-primary); color: white; transform: rotateY(180deg); text-align: center; } .flip-card-back p { font-size: 1rem; line-height: 1.7; } /* ===== STAT COUNTERS ===== */.stats-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; } .stat-item { text-align: center; padding: 48px 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: all 0.4s; min-width: 220px; } .stat-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); } .stat-number { font-size: 3.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 12px; } .stat-label { font-size: 1.1rem; color: var(--text-dark); font-weight: 700; } .stat-sublabel { font-size: 0.9rem; color: var(--text-light); margin-top: 8px; } /* ===== ZIGZAG LAYOUT ===== */.zigzag-section { display: flex; align-items: center; gap: 80px; margin-bottom: 80px; } .zigzag-section:last-child { margin-bottom: 0; } .zigzag-section.reverse { flex-direction: row-reverse; } .zigzag-content { flex: 1; } .zigzag-visual { flex: 1; display: flex; justify-content: center; } .zigzag-icon-wrap { width: 220px; height: 220px; background: var(--gradient-light); border-radius: 32px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); transition: all 0.4s; } .zigzag-icon-wrap:hover { transform: scale(1.05) rotate(-3deg); } .zigzag-icon-wrap img { width: 110px; height: 110px; object-fit: contain; } .zigzag-content h3 { font-size: 1.75rem; margin-bottom: 16px; } .zigzag-content p { font-size: 1.1rem; color: var(--text-body); line-height: 1.8; } @media (max-width: 768px) { .zigzag-section, .zigzag-section.reverse {  flex-direction: column;  gap: 40px; } }
 
 /* ===== MOBILE COMPARISON CARDS ===== */
 .comparison-mobile { display: none; }
@@ -161,7 +172,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                     <a href="about/" class="nav-link">About</a>
                     <a href="#" onclick="openContactDrawer(); return false;" class="nav-link">Contact</a>
                 </nav>
-                <a href="#" onclick="openDemoModal(); return false;" class="lqd-btn lqd-btn-primary">Request Demo</a>
+                <a href="#" onclick="openDemoDrawer(); return false;" class="lqd-btn lqd-btn-primary">Request Demo</a>
             </div>
         </header>
         <!-- Hero Section -->
@@ -183,7 +194,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                         <h1>From Documents to <span class="gradient-text">Dependable Answers</span></h1>
                         <p class="hero-text">Compass turns policies, procedures, and training into a governed knowledge assistant your employees can trust. Get answers in seconds, grounded in your approved sources, running in a private cloud.</p>
                         <div class="hero-buttons">
-                            <a href="#" onclick="openDemoModal(); return false;" class="lqd-btn lqd-btn-primary">Request a Demo →</a>
+                            <a href="#" onclick="openDemoDrawer(); return false;" class="lqd-btn lqd-btn-primary">Request a Demo →</a>
                             <a href="#how-it-works" class="lqd-btn lqd-btn-secondary">See How It Works</a>
                         </div>
                     </div>
@@ -971,7 +982,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                             </li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="#" onclick="openDemoModal(); return false;" class="lqd-btn lqd-btn-primary" data-pgc-define>Start 3-Month Trial →</a>
+                            <a href="#" onclick="openDemoDrawer(); return false;" class="lqd-btn lqd-btn-primary" data-pgc-define>Start 3-Month Trial →</a>
                         </div>
                     </div>
                     <div class="pricing-info animate-on-scroll delay-200">
@@ -1110,7 +1121,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                 <h2>Ready to Transform How Your Team Finds Answers?</h2>
                 <p>See Compass in action with a personalized demo. We'll show you how it works with your actual documents.</p>
                 <div class="cta-buttons">
-                    <a href="#" onclick="openDemoModal(); return false;" class="lqd-btn lqd-btn-primary">Schedule Your Demo →</a>
+                    <a href="#" onclick="openDemoDrawer(); return false;" class="lqd-btn lqd-btn-primary">Schedule Your Demo →</a>
                     <a href="#features" class="lqd-btn lqd-btn-secondary">Learn More</a>
                 </div>
             </div>
@@ -1128,7 +1139,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                         <a href="#features">Features</a>
                         <a href="#how-it-works">How It Works</a>
                         <a href="#comparison">Compare</a>
-                        <a href="#" onclick="openDemoModal(); return false;">Request Demo</a>
+                        <a href="#" onclick="openDemoDrawer(); return false;">Request Demo</a>
                     </div>
                     <div class="footer-column">
                         <h4>Company</h4>
@@ -1456,7 +1467,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
         })();
 
         // Demo Modal
-        function openDemoModal() {
+        function openDemoDrawer() {
             document.getElementById('demoModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1496,6 +1507,19 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
         <!-- HubSpot Meetings Embed Script -->
         <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
         
+        <!-- Demo Drawer -->
+        <div class="contact-drawer-overlay" id="demoDrawerOverlay" onclick="closeDemoDrawer()"></div>
+        <div class="demo-drawer" id="demoDrawer">
+            <div class="demo-drawer-header">
+                <h3>Schedule a Demo</h3>
+                <button class="demo-drawer-close" onclick="closeDemoDrawer()">×</button>
+            </div>
+            <div class="demo-drawer-body">
+                <p>Pick a time that works for you and we'll show you Compass in action.</p>
+                <div id="demoCalendarContainer" class="meetings-iframe-container" data-src="https://hello.directlink.ai/meetings/chris-catanzarite/directlink-demo-calendar?embed=true"></div>
+            </div>
+        </div>
+        
         <!-- Contact Drawer -->
         <div class="contact-drawer-overlay" id="contactDrawerOverlay" onclick="closeContactDrawer()"></div>
         <div class="contact-drawer" id="contactDrawer">
@@ -1513,6 +1537,30 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
         <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
         <script>
             let contactFormLoaded = false;
+            let demoCalendarLoaded = false;
+            
+            function openDemoDrawer() {
+                document.getElementById('demoDrawerOverlay').classList.add('active');
+                document.getElementById('demoDrawer').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (!demoCalendarLoaded) {
+                    // Manually create iframe for HubSpot calendar
+                    const container = document.getElementById('demoCalendarContainer');
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://hello.directlink.ai/meetings/chris-catanzarite/directlink-demo-calendar?embed=true';
+                    iframe.style.width = '100%';
+                    iframe.style.minHeight = '550px';
+                    iframe.style.border = 'none';
+                    container.appendChild(iframe);
+                    demoCalendarLoaded = true;
+                }
+            }
+            function closeDemoDrawer() {
+                document.getElementById('demoDrawerOverlay').classList.remove('active');
+                document.getElementById('demoDrawer').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
             function openContactDrawer() {
                 document.getElementById('contactDrawerOverlay').classList.add('active');
                 document.getElementById('contactDrawer').classList.add('active');
@@ -1532,8 +1580,12 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                 document.getElementById('contactDrawer').classList.remove('active');
                 document.body.style.overflow = '';
             }
+            
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeContactDrawer();
+                if (e.key === 'Escape') {
+                    closeDemoDrawer();
+                    closeContactDrawer();
+                }
             });
         </script>
     </body>

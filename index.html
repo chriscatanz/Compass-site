@@ -140,56 +140,45 @@
                     <span class="section-label">Why Not the Others?</span>
                     <h2 class="section-title" style="width: 745px;">Not Just Another Off-The-Shelf Tool</h2>
                 </div>
-                <div class="comparison-grid">
+                <!-- 3 competitors row -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px;">
                     <div class="comparison-card animate-on-scroll delay-100">
                         <h3>❌ ChatGPT Enterprise</h3>
                         <ul>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Your data flows through OpenAI
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Can't cite your actual policies
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> No access controls or audit trail
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Built for general productivity
-                            </li>
+                            <li><span class="icon icon-cross">✕</span> Your data flows through OpenAI</li>
+                            <li><span class="icon icon-cross">✕</span> Can't cite your actual policies</li>
+                            <li><span class="icon icon-cross">✕</span> No access controls or audit trail</li>
+                            <li><span class="icon icon-cross">✕</span> Built for general productivity</li>
                         </ul>
                     </div>
-                    <div class="comparison-card featured animate-on-scroll delay-200">
-                        <h3>✅ Compass</h3>
+                    <div class="comparison-card animate-on-scroll delay-200">
+                        <h3>❌ Microsoft Copilot</h3>
                         <ul>
-                            <li>
-                                <span class="icon icon-check">✓</span> Purpose-built for employee knowledge
-                            </li>
-                            <li>
-                                <span class="icon icon-check">✓</span> 100% private cloud infrastructure
-                            </li>
-                            <li>
-                                <span class="icon icon-check">✓</span> Live in an hour, not a quarter
-                            </li>
-                            <li>
-                                <span class="icon icon-check">✓</span> No per-seat pricing trap
-                            </li>
+                            <li><span class="icon icon-cross">✕</span> Requires full M365 ecosystem</li>
+                            <li><span class="icon icon-cross">✕</span> $30/user/month adds up fast</li>
+                            <li><span class="icon icon-cross">✕</span> Not purpose-built for compliance</li>
+                            <li><span class="icon icon-cross">✕</span> Complex, quarter-long implementation</li>
                         </ul>
                     </div>
                     <div class="comparison-card animate-on-scroll delay-300">
-                        <h3>❌ Microsoft Copilot</h3>
+                        <h3>❌ Google Gemini</h3>
                         <ul>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Requires full M365 ecosystem
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> $30/user/month adds up fast
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Not built for enterprise
-                            </li>
-                            <li>
-                                <span class="icon icon-cross">✕</span> Complex, quarter-long implementation
-                            </li>
+                            <li><span class="icon icon-cross">✕</span> Data used to improve Google models</li>
+                            <li><span class="icon icon-cross">✕</span> No document-level access controls</li>
+                            <li><span class="icon icon-cross">✕</span> No source citations from your docs</li>
+                            <li><span class="icon icon-cross">✕</span> Not built for regulated industries</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Compass featured row -->
+                <div style="display: flex; justify-content: center;">
+                    <div class="comparison-card featured animate-on-scroll" style="width: 66.66%;">
+                        <h3>✅ Compass</h3>
+                        <ul>
+                            <li><span class="icon icon-check">✓</span> Purpose-built for employee knowledge</li>
+                            <li><span class="icon icon-check">✓</span> 100% private cloud infrastructure</li>
+                            <li><span class="icon icon-check">✓</span> Live in an hour, not a quarter</li>
+                            <li><span class="icon icon-check">✓</span> No per-seat pricing trap</li>
                         </ul>
                     </div>
                 </div>
@@ -712,7 +701,7 @@
                     <div style="text-align: center; margin-bottom: 8px;">
                         <button class="lqd-btn lqd-btn-primary" onclick="toggleTokenDrawer(this)" style="font-size: 0.9rem;">Understanding Token Cost ▾</button>
                     </div>
-                    <div id="tokenDrawer" style="display:block; text-align:left; max-width:1100px; margin:0 auto;">
+                    <div id="tokenDrawer" style="display:none; text-align:left; max-width:1100px; margin:0 auto;">
                         <div class="pricing-token-row animate-on-scroll delay-200">
                             <div class="token-types">
                                 <div class="token-type-card">

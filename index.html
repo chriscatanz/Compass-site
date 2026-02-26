@@ -1446,7 +1446,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                     var nextBtn = document.getElementById('chatNext');
                     if (prevBtn) prevBtn.disabled = next === 0;
                     if (nextBtn) nextBtn.disabled = next === dots.length - 1;
-                }, 4000);
+                }, 8000);
             }
             function resetAutoPlay() { clearInterval(autoPlayTimer); startAutoPlay(); }
             document.addEventListener('DOMContentLoaded', function() {

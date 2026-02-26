@@ -12,7 +12,7 @@ jobs:
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@6.0.0
         with:
-          switches: -avzr --delete --exclude='.htaccess' --exclude='.htpasswd' --exclude='.github'
+          switches: -avzr --delete --exclude='.htaccess' --exclude='.htpasswd' --exclude='.github' --exclude='.claude'
           path: ./
           remote_path: /home/compkfgo/public_html/
           remote_host: ${{ secrets.SSH_HOST }}

@@ -1409,17 +1409,35 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text-dark); line-height:
                 // Step 3 fills (4.2s)
                 setTimeout(function() { if (steps[2]) steps[2].classList.add('step-active'); }, 4200);
             }
-            // Start after page load, then repeat every 15s (5s anim + 10s pause)
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(runStepsAnimation, 800);
-                setInterval(function() {
+            // Start when section scrolls into view, then repeat every 10s
+            var stepsStarted = false;
+            var stepsInterval = null;
+            var stepsSection = document.querySelector('.steps-container');
+            function startStepsLoop() {
+                if (stepsStarted) return;
+                stepsStarted = true;
+                runStepsAnimation();
+                stepsInterval = setInterval(function() {
                     var steps = document.querySelectorAll('.step-number');
                     var items = document.querySelectorAll('.step-item');
                     steps.forEach(function(s) { s.classList.remove('step-active'); });
                     items.forEach(function(i) { i.classList.remove('line-active'); });
                     setTimeout(runStepsAnimation, 300);
                 }, 10000);
-            });
+            }
+            if ('IntersectionObserver' in window && stepsSection) {
+                var stepsObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            startStepsLoop();
+                            stepsObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                stepsObserver.observe(stepsSection);
+            } else {
+                document.addEventListener('DOMContentLoaded', function() { setTimeout(startStepsLoop, 800); });
+            }
         })();
 
         // Token drawer toggle

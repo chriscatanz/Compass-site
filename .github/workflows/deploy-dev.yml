@@ -1,0 +1,21 @@
+name: Deploy to Dev (dev.compasschat.ai)
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete --exclude='.htaccess' --exclude='.htpasswd' --exclude='.github' --exclude='.claude'
+          path: ./
+          remote_path: /home/compkfgo/dev.compasschat.ai/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_KEY }}
+          remote_port: 21098

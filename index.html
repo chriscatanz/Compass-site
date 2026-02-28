@@ -1583,6 +1583,7 @@
 
             // Start after a short delay so initial text is visible first
             setTimeout(function() {
+                charIdx = phrases[0].length; // must start at full length before backspacing
                 deleting = true;
                 type();
             }, 2800);

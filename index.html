@@ -1568,9 +1568,9 @@
             function type() {
                 var current = phrases[idx];
                 if (!deleting) {
-                    el.style.opacity = '1';
                     charIdx++;
                     el.textContent = current.slice(0, charIdx);
+                    el.style.opacity = charIdx <= 1 ? '0' : '1';
                     if (charIdx === current.length) {
                         deleting = true;
                         pauseTimer = setTimeout(type, 2200);
@@ -1579,6 +1579,7 @@
                 } else {
                     charIdx--;
                     el.textContent = current.slice(0, charIdx);
+                    el.style.opacity = charIdx <= 1 ? '0' : '1';
                     if (charIdx === 0) {
                         el.textContent = '\u00a0';
                         el.style.opacity = '0';

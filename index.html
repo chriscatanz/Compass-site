@@ -1290,24 +1290,16 @@
             points.position.y = -8;
             scene.add(points);
             
-            let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
-            document.addEventListener('mousemove', (e) => {
-                targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-                targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-            });
-            
             let time = 0;
             function animate() {
                 requestAnimationFrame(animate);
-                time += 0.00375; // 75% slower (was 0.015)
-                mouseX += (targetMouseX - mouseX) * 0.05;
-                mouseY += (targetMouseY - mouseY) * 0.05;
+                time += 0.00375;
                 material.uniforms.uTime.value = time;
-                material.uniforms.uMouse.value.set(mouseX, mouseY);
+                material.uniforms.uMouse.value.set(0, 0);
                 pointsMaterial.uniforms.uTime.value = time;
-                pointsMaterial.uniforms.uMouse.value.set(mouseX, mouseY);
-                camera.position.x = Math.sin(time * 0.2) * 0.3 + mouseX * 1.5;
-                camera.position.y = 5 + Math.cos(time * 0.15) * 0.2 - mouseY * 0.5;
+                pointsMaterial.uniforms.uMouse.value.set(0, 0);
+                camera.position.x = Math.sin(time * 0.2) * 0.3;
+                camera.position.y = 5 + Math.cos(time * 0.15) * 0.2;
                 camera.lookAt(0, 0, 0);
                 renderer.render(scene, camera);
             }

@@ -1764,7 +1764,7 @@
           setTimeout(function() { card.classList.remove('flipped'); }, 2800);
         }
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0, rootMargin: '-50% 0px -50% 0px' });
     document.querySelectorAll('.flip-card').forEach(function(card) {
       observer.observe(card);
     });

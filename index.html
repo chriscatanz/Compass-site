@@ -83,7 +83,7 @@
             <div class="container">
                 <div class="section-header animate-on-scroll">
                     <span class="section-label">The Challenge</span>
-                    <h2 class="section-title">Your Team Has the Answers<br><span style="color: var(--secondary)">They Just Can&apos;t Find Them</span></h2>
+                    <h2 class="section-title">Your Team <span id="ctaTypingText" style="color: var(--secondary);visibility:hidden;">Finds Answers</span></h2>
                     <p class="section-subtitle">Organizations invest heavily in policies and procedures, but that knowledge ends up scattered and inaccessible.</p>
                 </div>
                 <div class="problem-grid">
@@ -1664,6 +1664,51 @@
             wrap.classList.remove('shimmer-run');
         }, false);
     });
+})();
+</script>
+
+<script>
+(function(){
+    var phrases = ['Finds Answers', 'Closes Gaps', 'Stays Compliant', 'Moves Faster', 'Trusts the Process'];
+    var el = document.getElementById('ctaTypingText');
+    if (!el) return;
+    var idx = 0, charIdx = 0, deleting = false;
+    function type() {
+        var current = phrases[idx];
+        if (!deleting) {
+            charIdx++;
+            el.textContent = current.slice(0, charIdx);
+            el.style.visibility = charIdx <= 1 ? 'hidden' : 'visible';
+            if (charIdx === current.length) { deleting = true; setTimeout(type, 2200); return; }
+        } else {
+            charIdx--;
+            el.textContent = current.slice(0, charIdx);
+            el.style.visibility = charIdx <= 1 ? 'hidden' : 'visible';
+            if (charIdx === 0) {
+                el.textContent = '\u00a0';
+                el.style.visibility = 'hidden';
+                deleting = false;
+                idx = (idx + 1) % phrases.length;
+                setTimeout(type, 400); return;
+            }
+        }
+        setTimeout(type, deleting ? 38 : 68);
+    }
+    // Start when section scrolls into view
+    var started = false;
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting && !started) {
+                started = true;
+                charIdx = phrases[0].length;
+                deleting = true;
+                el.textContent = phrases[0];
+                el.style.visibility = 'visible';
+                setTimeout(type, 1200);
+            }
+        });
+    }, { threshold: 0.5 });
+    obs.observe(el.closest('section') || el.parentElement);
 })();
 </script>
 </body>
